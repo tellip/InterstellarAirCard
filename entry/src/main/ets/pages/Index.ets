@@ -8,8 +8,8 @@ const shuffle = <T>(array: Array<T>) => {
   return array
 }
 const cardSources = [
-  $rawfile('Mercury.jpg'), $rawfile('Venus.jpg'), $rawfile('Earth.jpg'), $rawfile('Mars.png'),
-  $rawfile('Jupiter.png'), $rawfile('Saturn.jpg'), $rawfile('Uranus.png'), $rawfile('Neptune.png')
+  $rawfile('Sun.jpg'), $rawfile('Mercury.jpg'), $rawfile('Venus.jpg'), $rawfile('Earth.jpg'), $rawfile('Mars.png'),
+  $rawfile('Jupiter.png'), $rawfile('Saturn.jpg'), $rawfile('Uranus.png'), $rawfile('Neptune.png'), $rawfile('Moon.jpg')
 ]
 
 @Entry
