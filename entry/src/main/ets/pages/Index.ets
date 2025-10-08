@@ -28,7 +28,7 @@ struct Index {
   build() {
     RelativeContainer() {
       Scroll() {
-        GridRow({ columns: 2 }) {
+        GridRow({ columns: 3 }) {
           ForEach(this.indexList, (sourceIndex: number, cardIndex) => {
             GridCol() {
               RelativeContainer() {
