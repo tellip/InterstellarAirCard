@@ -1,0 +1,24 @@
+flowchart TD
+    classDef default white-space:nowrap
+
+    A0[onPageShow] --> A1[resetGame]
+    A2[primaryButton.action] --> A1
+    A1 ---> A3["indexList=initIndexList()<br/>cardsFlipped=[]<br/>justClicked=NaN<br/>flippedCount=0<br/>startTime=Date.now()<br/>clickCount=0<br/>isLocked=false"]
+
+    B0[handleCardClick] --> B1{"isLocked || cardsFlipped[cardIndex]"}
+    B1 -->|true| B0
+    B1 -->|false| B2["clickCount++<br/>cardsFlipped[cardIndex] = true"]
+    B2 --> B3{"isNaN(justClicked)"}
+    B3 -->|true| B4[justClicked = cardIndex]
+    B4 --> B0
+    B3 -->|false| B5["isLocked = true<br/>prevCardIndex = justClicked"]
+    B5 --> B6{"sourceIndex === indexList[prevCardIndex]"}
+    B6 -->|true| B7["flippedCount++<br/>justClicked = NaN<br/>isLocked = false"]
+    B7 --> B8{"flippedCount >= cardSources.length"}
+    B8 -->|false| B0
+    B8 -->|true| B9[showAlertDialog]
+    B6 -->|false| B10[setTimeout]
+
+    B10 -.-> C0
+
+    C0["cardsFlipped[prevCardIndex] = false<br/>cardsFlipped[cardIndex] = false<br/>justClicked = NaN<br/>isLocked = false"]
