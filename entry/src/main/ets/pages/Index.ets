@@ -33,10 +33,8 @@ struct Index {
   // ========== 私有方法 ==========
   /** 初始化洗牌后的卡牌索引数组 */
   private initIndexList(): Array<number> {
-    return shuffle([
-      ...cardSources.map((_, i) => i),
-      ...cardSources.map((_, i) => i)
-    ])
+    const a = cardSources.map((_, i) => i)
+    return shuffle([...a, ...a])
   }
 
   /** 重置游戏全部状态 */
@@ -69,10 +67,8 @@ struct Index {
 
     // 第二张牌：进入配对判断，先锁定点击
     this.isLocked = true
-    const prevCardIndex = this.justClicked
-    const isMatch = sourceIndex === this.indexList[prevCardIndex]
 
-    if (isMatch) {
+    if (sourceIndex === this.indexList[this.justClicked]) {
       // 配对成功
       this.flippedCount++
       this.justClicked = NaN
@@ -98,7 +94,7 @@ struct Index {
     } else {
       // 配对失败：停留800ms后共同翻回
       setTimeout(() => {
-        this.cardsFlipped[prevCardIndex] = false
+        this.cardsFlipped[this.justClicked] = false
         this.cardsFlipped[cardIndex] = false
         this.justClicked = NaN
         this.isLocked = false
